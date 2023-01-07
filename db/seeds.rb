@@ -70,29 +70,29 @@ Organization.create(organization_status:2,token:nil,organization_type:2,name: 'C
 	                username:'admin'.upcase, password:Digest::MD5.hexdigest('123'.upcase))
 
 puts "Organizações criadas " + Organization.count.to_s
-# tabacaria_id = Organization.where(name: 'Tabacaria Aguiar').first.id
-# upa_id = Organization.where(name: 'Upa Distribuidora').first.id
-# countnine_id = Organization.where(name: 'CountNineBurgerCamp').first.id
-# rendemais_id = Organization.where(name: 'Super Rende Mais').first.id 
-# crememel_id = Organization.where(name: 'Creme Mel').first.id
-# marbo_id = Organization.where(name: 'Marbo Supermercado').first.id
-# ninho_id = Organization.where(name: 'Açaí do Ninho').first.id
-# badoy_id = Organization.where(name: 'Casa de Carnes do Badoy').first.id
-# olive_id = Organization.where(name: 'Olive Delivery Pizza').first.id
-# vianet_id = Organization.where(name: 'Via Net Informática').first.id
+tabacaria_id = Organization.where(name: 'Tabacaria Aguiar').first.id
+upa_id = Organization.where(name: 'Upa Distribuidora').first.id
+countnine_id = Organization.where(name: 'CountNineBurgerCamp').first.id
+rendemais_id = Organization.where(name: 'Super Rende Mais').first.id 
+crememel_id = Organization.where(name: 'Creme Mel').first.id
+marbo_id = Organization.where(name: 'Marbo Supermercado').first.id
+ninho_id = Organization.where(name: 'Açaí do Ninho').first.id
+badoy_id = Organization.where(name: 'Casa de Carnes do Badoy').first.id
+olive_id = Organization.where(name: 'Olive Delivery Pizza').first.id
+vianet_id = Organization.where(name: 'Via Net Informática').first.id
 
-
-# Category.create(organization_id:tabacaria_id,name:"narguiles")
-# Category.create(organization_id:tabacaria_id,name:"essencias")
-# Category.create(organization_id:tabacaria_id,name:"terere")
-# Category.create(organization_id:countnine_id,name:"lanches",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-lanches-v2.jpg")
-# Category.create(organization_id:crememel_id,name:"lanches",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-lanches-v2.jpg")
-# Category.create(organization_id:crememel_id,name:"pizzas",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-pizza.jpg")
-# Category.create(organization_id:olive_id,name:"pizzas",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-pizza.jpg")
-# Category.create(organization_id:badoy_id,name:"carnes",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-carnes.jpg")
-# Category.create(organization_id:ninho_id,name:"acai",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-acai.jpg")
-# Category.create(organization_id:upa_id,name:"bebidas",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-bebidas.jpg")
-
+Category.destroy_all
+Category.create(organization_id:tabacaria_id,name:"narguiles")
+Category.create(organization_id:tabacaria_id,name:"essencias")
+Category.create(organization_id:tabacaria_id,name:"terere")
+Category.create(organization_id:countnine_id,name:"lanches",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-lanches-v2.jpg")
+Category.create(organization_id:crememel_id,name:"lanches",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-lanches-v2.jpg")
+Category.create(organization_id:crememel_id,name:"pizzas",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-pizza.jpg")
+Category.create(organization_id:olive_id,name:"pizzas",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-pizza.jpg")
+Category.create(organization_id:badoy_id,name:"carnes",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-carnes.jpg")
+Category.create(organization_id:ninho_id,name:"acai",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-acai.jpg")
+Category.create(organization_id:upa_id,name:"bebidas",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-bebidas.jpg")
+puts "Categorias criadas " + Category.count.to_s
 
 # OrganizationCategoryTag.create(organization_id:tabacaria_id,tag: :tabacaria)
 # OrganizationCategoryTag.create(organization_id:upa_id,tag: :distribuidora)
