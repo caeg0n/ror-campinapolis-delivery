@@ -34,4 +34,6 @@ Rails.application.routes.draw do
 	get 'organizations/info/:id', to: "organizations#info"
 	get 'get_products_length/:id', to: "products#get_length"
 	get 'organizations_by_category/:name', to: "categories#get_organizations"
+
+	get 'get_all_with_distinct_category', to: "organizations#get_all_with_distinct_category"
 end

@@ -19,14 +19,14 @@ group :development, :test do
 end
 
 group :development do
-	gem 'pry'
 	gem 'pry-rails', '= 0.3.9'
-	gem 'pry-doc'
 	gem 'pry-awesome_print'
 	gem "awesome_print"
 	gem 'listen'
 	gem 'spring'
 	gem 'spring-watcher-listen'
+	#gem 'pry'
+	#gem 'pry-doc'
 end
 
 

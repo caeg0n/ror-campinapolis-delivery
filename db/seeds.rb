@@ -1,6 +1,10 @@
 require 'digest/md5'
 #tabacaria aguiar
 Organization.destroy_all
+Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Tabacaria Aguiar Fake',category_base:'tabacaria',cel: '66981053385',
+	                username:'pc2'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0',password:Digest::MD5.hexdigest('123'.upcase),open:false,
+	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1612061953/camp-delivery/logos/tabacaria.png",
+					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615574827/camp-delivery/covers/tabaca.jpg")
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Tabacaria Aguiar',category_base:'tabacaria',cel: '66981053385',
 	                username:'pc'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0',password:Digest::MD5.hexdigest('123'.upcase),open:false,
 	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1612061953/camp-delivery/logos/tabacaria.png",
@@ -94,34 +98,36 @@ Category.create(organization_id:ninho_id,name:"acai",image_url:"https://static-i
 Category.create(organization_id:upa_id,name:"bebidas",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-bebidas.jpg")
 puts "Categorias criadas " + Category.count.to_s
 
-# OrganizationCategoryTag.create(organization_id:tabacaria_id,tag: :tabacaria)
-# OrganizationCategoryTag.create(organization_id:upa_id,tag: :distribuidora)
-# OrganizationCategoryTag.create(organization_id:countnine_id,tag: :hamburgueria)
-# OrganizationCategoryTag.create(organization_id:rendemais_id,tag: :supermercado)
-# OrganizationCategoryTag.create(organization_id:crememel_id,tag: :hamburgueria)
-# OrganizationCategoryTag.create(organization_id:crememel_id,tag: :sorveteria)
-# OrganizationCategoryTag.create(organization_id:crememel_id,tag: :pizzaria)
-# OrganizationCategoryTag.create(organization_id:olive_id,tag: :pizzaria)
-# OrganizationCategoryTag.create(organization_id:crememel_id,tag: :lanchonete)
-# OrganizationCategoryTag.create(organization_id:marbo_id,tag: :supermercado)
-# OrganizationCategoryTag.create(organization_id:ninho_id,tag: :acai)
-# OrganizationCategoryTag.create(organization_id:badoy_id,tag: :acougue)
-# OrganizationCategoryTag.create(organization_id:vianet_id,tag: :informatica)
+OrganizationCategoryTag.destroy_all
+OrganizationCategoryTag.create(organization_id:tabacaria_id,tag: :tabacaria)
+OrganizationCategoryTag.create(organization_id:upa_id,tag: :distribuidora)
+OrganizationCategoryTag.create(organization_id:countnine_id,tag: :hamburgueria)
+OrganizationCategoryTag.create(organization_id:rendemais_id,tag: :supermercado)
+OrganizationCategoryTag.create(organization_id:crememel_id,tag: :hamburgueria)
+OrganizationCategoryTag.create(organization_id:crememel_id,tag: :sorveteria)
+OrganizationCategoryTag.create(organization_id:crememel_id,tag: :pizzaria)
+OrganizationCategoryTag.create(organization_id:olive_id,tag: :pizzaria)
+OrganizationCategoryTag.create(organization_id:crememel_id,tag: :lanchonete)
+OrganizationCategoryTag.create(organization_id:marbo_id,tag: :supermercado)
+OrganizationCategoryTag.create(organization_id:ninho_id,tag: :acai)
+OrganizationCategoryTag.create(organization_id:badoy_id,tag: :acougue)
+OrganizationCategoryTag.create(organization_id:vianet_id,tag: :informatica)
+puts "CategoriasTag criadas " + OrganizationCategoryTag.count.to_s
 
-
-
-# Product.create(name:"Essência Premium FM Brasil",organization_id:tabacaria_id,
-# 	                                             description:"tabaco bem picotado e bastante melaço, com sabor intenso e duradouro",
-# 	                                             price:"99.99",
-# 	                                             img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584882/camp-delivery/products/cigarro.png",
-# 	                                             status:2)
-# Product.create(name:"Mesa Para Narguile",organization_id:tabacaria_id,
-# 	                   description:"Mesa Narguile em Madeira",
-# 	                   price:"99.99",
-# 	                   img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584976/camp-delivery/products/mesa.png",
-# 	                   status:2)
-# Product.create(name:"Erva Mate Constança",organization_id:tabacaria_id,
-# 	                   description:"Erva Mate Especial Pura Folha 1kg",
-# 	                   price:"99.99",
-# 	                   img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584895/camp-delivery/products/erva.png",
-# 	                   status:2)
+Product.destroy_all
+Product.create(name:"Essência Premium FM Brasil",organization_id:tabacaria_id,
+	                                             description:"tabaco bem picotado e bastante melaço, com sabor intenso e duradouro",
+	                                             price:"99.99",
+	                                             img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584882/camp-delivery/products/cigarro.png",
+	                                             status:2)
+Product.create(name:"Mesa Para Narguile",organization_id:tabacaria_id,
+	                   description:"Mesa Narguile em Madeira",
+	                   price:"99.99",
+	                   img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584976/camp-delivery/products/mesa.png",
+	                   status:2)
+Product.create(name:"Erva Mate Constança",organization_id:tabacaria_id,
+	                   description:"Erva Mate Especial Pura Folha 1kg",
+	                   price:"99.99",
+	                   img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584895/camp-delivery/products/erva.png",
+	                   status:2)
+puts "Produtos criados " + Product.count.to_s

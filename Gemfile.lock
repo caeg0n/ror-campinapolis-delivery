@@ -135,9 +135,6 @@ GEM
     pry-awesome_print (9.6.11)
       awesome_print (>= 1.1.0, < 999)
       pry (>= 0.9.0, < 999)
-    pry-doc (1.4.0)
-      pry (~> 0.11)
-      yard (~> 0.9.11)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     puma (6.0.2)
@@ -213,12 +210,9 @@ GEM
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     uri (0.12.0)
-    webrick (1.7.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    yard (0.9.28)
-      webrick (~> 1.7.0)
     zeitwerk (2.6.6)
 
 PLATFORMS
@@ -234,9 +228,7 @@ DEPENDENCIES
   listen
   net-http (= 0.3.2)
   pg (= 1.4.5)
-  pry
   pry-awesome_print
-  pry-doc
   pry-rails (= 0.3.9)
   puma (= 6.0.2)
   rack-cors (= 1.1.1)

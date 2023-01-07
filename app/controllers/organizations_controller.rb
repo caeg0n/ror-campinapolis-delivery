@@ -69,6 +69,10 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def get_all_with_distinct_category
+    render json: Organization.all.uniq.group_by(&:category_base)
+  end
+
   # def update
   #   if @organization.update(organization_params)
   #     render json: @organization
