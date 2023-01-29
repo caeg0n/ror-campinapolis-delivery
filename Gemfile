@@ -7,12 +7,13 @@ gem 'rails', '= 6.1.7'
 gem 'rack-cors', '= 1.1.1'
 gem 'pg', '= 1.4.5'
 gem 'puma', '= 6.0.2'
-gem 'bootsnap', require: false
+gem 'bootsnap','= 1.15.0', require: false
 gem 'jwt', '= 2.6.0'
 gem 'bcrypt', '= 3.1.18'
 gem 'httparty', '= 0.21.0'
 gem 'rails_admin','= 3.1.1'
 gem 'net-http', '= 0.3.2'
+gem 'sassc-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -61,5 +62,3 @@ end
 #end
 
 #gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'sassc-rails'
