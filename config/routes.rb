@@ -36,4 +36,7 @@ Rails.application.routes.draw do
 	get 'organizations_by_category/:name', to: "categories#get_organizations"
 
 	get 'get_all_organizations_with_distinct_category', to: "organizations#get_all_with_distinct_category"
+	get 'get_all_categories', to: "categories#index"
+	get 'get_all_opened_organizations', to: "organizations#opened_organizations"
+	get 'get_all_closed_organizations', to: "organizations#closed_organizations"
 end

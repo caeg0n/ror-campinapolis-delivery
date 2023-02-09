@@ -73,6 +73,53 @@ class OrganizationsController < ApplicationController
     render json: Organization.all.uniq.group_by(&:category_base)
   end
 
+  def opened_organizations
+    render json: Organization.where(open: true)
+  end
+
+  def closed_organizations
+    tempObj = {}
+    result = []
+    organizations = Organization.where(open: false)
+    organizations.each do |organization|
+      tempObj = { "distance": "",
+                  "id": organization.id,
+                  "image": organization.logo,
+                  "rating": 6,
+                  "subTitle": organization.category_base,
+                  "time": "",
+                  "title": organization.name,
+                }
+      result.push(tempObj)
+    end
+    temp = result.last.dup
+    temp[:id] = temp[:id] + 1
+    result << temp
+    render json: result 
+  end
+
+
+  def opened_organizations
+    tempObj = {}
+    result = []
+    organizations = Organization.where(open: true)
+    organizations.each do |organization|
+      tempObj = { "distance": "",
+                  "id": organization.id,
+                  "image": organization.logo,
+                  "rating": 6,
+                  "subTitle": organization.category_base,
+                  "time": "",
+                  "title": organization.name,
+                }
+      result.push(tempObj)
+    end
+    temp = result.last.dup
+    temp[:id] = temp[:id] + 1
+    result << temp
+    render json: result 
+  end
+
   # def update
   #   if @organization.update(organization_params)
   #     render json: @organization

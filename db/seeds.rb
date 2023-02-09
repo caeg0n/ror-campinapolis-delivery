@@ -54,14 +54,14 @@ Organization.create(organization_status:2,token:nil,organization_type:0,name: 'C
 
 #olive pizza
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Olive Delivery Pizza', cel: '',category_base:'pizzaria',
-	                username:'olive'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:false,
+	                username:'olive'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:true,
 	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1616719655/camp-delivery/logos/Captura_de_Tela_2021-03-25_%C3%A0s_21.04.38.png",
 					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1616718710/camp-delivery/covers/svogb2eu6r5vi0hgc8l3.jpg")
 
 
 #olive pizza
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Via Net Informática', cel: '',category_base:'loja de informatica',
-	                username:'leonel'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:false,
+	                username:'leonel'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:true,
 	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1616871002/camp-delivery/logos/78805356_105464340947965_4967109195124965376_n.png",
 					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1616871193/camp-delivery/covers/78805356_105464340947965_4967109195124965376_n.png")
 
@@ -86,9 +86,9 @@ olive_id = Organization.where(name: 'Olive Delivery Pizza').first.id
 vianet_id = Organization.where(name: 'Via Net Informática').first.id
 
 Category.destroy_all
-Category.create(organization_id:tabacaria_id,name:"narguiles")
-Category.create(organization_id:tabacaria_id,name:"essencias")
-Category.create(organization_id:tabacaria_id,name:"terere")
+Category.create(organization_id:tabacaria_id,name:"narguiles",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-lanches-v2.jpg")
+Category.create(organization_id:tabacaria_id,name:"essencias",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-lanches-v2.jpg")
+Category.create(organization_id:tabacaria_id,name:"terere",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-lanches-v2.jpg")
 Category.create(organization_id:countnine_id,name:"lanches",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-lanches-v2.jpg")
 Category.create(organization_id:crememel_id,name:"lanches",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-lanches-v2.jpg")
 Category.create(organization_id:crememel_id,name:"pizzas",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-pizza.jpg")
