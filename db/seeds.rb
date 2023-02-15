@@ -1,40 +1,36 @@
 require 'digest/md5'
 #tabacaria aguiar
 Organization.destroy_all
-Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Tabacaria Aguiar Fake',category_base:'tabacaria',cel: '66981053385',
-	                username:'pc2'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0',password:Digest::MD5.hexdigest('123'.upcase),open:false,
-	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1612061953/camp-delivery/logos/tabacaria.png",
-					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615574827/camp-delivery/covers/tabaca.jpg")
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Tabacaria Aguiar',category_base:'tabacaria',cel: '66981053385',
-	                username:'pc'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0',password:Digest::MD5.hexdigest('123'.upcase),open:false,
+	                username:'pc'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0',password:Digest::MD5.hexdigest('123'.upcase),open:true,
 	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1612061953/camp-delivery/logos/tabacaria.png",
 					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615574827/camp-delivery/covers/tabaca.jpg")
 # #upa distribuidora
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Upa Distribuidora',category_base:'distribuidora de bebidas', cel: '66981053385',
-	                username:'marcelo'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:false,
+	                username:'marcelo'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:true,
 	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1612061965/camp-delivery/logos/upa.png",
 					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615575221/camp-delivery/covers/WhatsApp-Image-2019-02-16-at-22.21.00.jpg")
 #countnineburger
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'CountNineBurgerCamp', cel: '',category_base:'hamburgueria',
-	                username:'countnine'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:false,
+	                username:'countnine'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:true,
 	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615420177/camp-delivery/logos/0bf05726-dc72-4087-aa08-c510ff702dd2_rw_1200.jpg",
 					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615469094/camp-delivery/covers/fd0c77c0-698f-4022-a454-6c5d9180b666_rw_1200.jpg")
 
 #creme mel
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Creme Mel', cel: '',category_base:'lanchonete',
-	                username:'elon'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:false,
+	                username:'elon'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:true,
 	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615486468/camp-delivery/logos/images.jpg",
 					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615517026/camp-delivery/covers/logo.png")
 
 #rende mais
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Super Rende Mais', cel: '',category_base:'supermercado',
-	                username:'sergio'.upcase,delivery_fee: '2.0',minimal_buy_price:'20.0', password:Digest::MD5.hexdigest('123'.upcase),open:false,
+	                username:'sergio'.upcase,delivery_fee: '2.0',minimal_buy_price:'20.0', password:Digest::MD5.hexdigest('123'.upcase),open:true,
 	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615495782/camp-delivery/logos/ecjmpl87pl68sqxizk7i.jpg",
 					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615496826/camp-delivery/covers/70846134_1285757818263221_1253962478556020736_o.png.png")
 
 #marbo
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Marbo Supermercado', cel: '',category_base:'supermercado',
-	                username:'marcelia'.upcase,delivery_fee: '2.0',minimal_buy_price:'20.0', password:Digest::MD5.hexdigest('123'.upcase),open:false,
+	                username:'marcelia'.upcase,delivery_fee: '2.0',minimal_buy_price:'20.0', password:Digest::MD5.hexdigest('123'.upcase),open:true,
 	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615810231/camp-delivery/logos/144106579_3404490322993490_3877742609228070049_o.jpg",
 					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615810280/camp-delivery/covers/241865_790774994365049_6618817286463091179_o.jpg")
 
@@ -54,14 +50,14 @@ Organization.create(organization_status:2,token:nil,organization_type:0,name: 'C
 
 #olive pizza
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Olive Delivery Pizza', cel: '',category_base:'pizzaria',
-	                username:'olive'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:true,
+	                username:'olive'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:false,
 	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1616719655/camp-delivery/logos/Captura_de_Tela_2021-03-25_%C3%A0s_21.04.38.png",
 					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1616718710/camp-delivery/covers/svogb2eu6r5vi0hgc8l3.jpg")
 
 
 #olive pizza
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Via Net Informática', cel: '',category_base:'loja de informatica',
-	                username:'leonel'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:true,
+	                username:'leonel'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0', password:Digest::MD5.hexdigest('123'.upcase),open:false,
 	                logo:"https://res.cloudinary.com/campinapolis-com/image/upload/v1616871002/camp-delivery/logos/78805356_105464340947965_4967109195124965376_n.png",
 					cover:"https://res.cloudinary.com/campinapolis-com/image/upload/v1616871193/camp-delivery/covers/78805356_105464340947965_4967109195124965376_n.png")
 

@@ -85,19 +85,15 @@ class OrganizationsController < ApplicationController
       tempObj = { "distance": "",
                   "id": organization.id,
                   "image": organization.logo,
-                  "rating": 6,
+                  "rating": 5,
                   "subTitle": organization.category_base,
                   "time": "",
                   "title": organization.name,
                 }
       result.push(tempObj)
     end
-    temp = result.last.dup
-    temp[:id] = temp[:id] + 1
-    result << temp
     render json: result 
   end
-
 
   def opened_organizations
     tempObj = {}
@@ -107,17 +103,69 @@ class OrganizationsController < ApplicationController
       tempObj = { "distance": "",
                   "id": organization.id,
                   "image": organization.logo,
-                  "rating": 6,
+                  "rating": 5,
                   "subTitle": organization.category_base,
                   "time": "",
                   "title": organization.name,
                 }
       result.push(tempObj)
     end
-    temp = result.last.dup
-    temp[:id] = temp[:id] + 1
-    result << temp
     render json: result 
+  end
+
+  def most_popular
+    tempObj = {}
+    result = []
+    organizations = Organization.where(open: true)
+    organizations.each do |organization|
+      tempObj = {
+        image: organization.cover, 
+        id: organization.id,
+        title: organization.name,
+        subTitle: organization.category_base,
+        distance: "",
+        time: "",
+        rating: 5,
+      }
+      result.push(tempObj)
+    end
+    render json: result
+  end
+
+  def recommended_places
+    tempObj = {}
+    result = []
+    organizations = Organization.where(open: true)
+    organizations.each do |organization|
+      tempObj = { "distance": "",
+                  "id": organization.id,
+                  "image": organization.cover,
+                  "rating": 5,
+                  "subTitle": organization.category_base,
+                  "time": "",
+                  "title": organization.name,
+                }
+      result.push(tempObj)
+    end
+    render json: result
+  end
+
+   def hot_deals
+    tempObj = {}
+    result = []
+    organizations = Organization.where(open: true)
+    organizations.each do |organization|
+      tempObj = { "distance": "",
+                  "id": organization.id,
+                  "image": organization.logo,
+                  "rating": 5,
+                  "subTitle": organization.category_base,
+                  "time": "",
+                  "title": organization.name,
+                }
+      result.push(tempObj)
+    end
+    render json: result
   end
 
   # def update

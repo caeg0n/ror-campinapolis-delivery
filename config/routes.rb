@@ -39,4 +39,7 @@ Rails.application.routes.draw do
 	get 'get_all_categories', to: "categories#index"
 	get 'get_all_opened_organizations', to: "organizations#opened_organizations"
 	get 'get_all_closed_organizations', to: "organizations#closed_organizations"
+	get 'get_most_popular/:number', to: "organizations#most_popular"
+	get 'get_recommended_places', to: "organizations#recommended_places"
+	get 'get_hot_deals', to: "organizations#hot_deals"
 end
