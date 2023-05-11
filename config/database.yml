@@ -23,7 +23,7 @@ production:
   database: camp_api_pg
   host: 200.39.135.90
   username: postgres
-  password: postgres
+  password: omega200
   port: 5432
   pool: 5
   timeout: 5000
