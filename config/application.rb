@@ -23,8 +23,8 @@ module UpaApi
   class Application < Rails::Application
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
-  config.middleware.use Rack::MethodOverride
-  config.middleware.use ActionDispatch::Session::CookieStore, {:key=>"_upa_api_session"}
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Session::CookieStore, {:key=>"_upa_api_session"}
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 

@@ -12,8 +12,18 @@ test:
   pool: 5
   timeout: 5000
 
+# production:
+#   adapter: postgresql
+#   database: camp_api_pg
+#   pool: 5
+#   timeout: 5000
+
 production:
   adapter: postgresql
   database: camp_api_pg
+  host: 200.39.135.90
+  username: postgres
+  password: postgres
+  port: 5432
   pool: 5
   timeout: 5000
