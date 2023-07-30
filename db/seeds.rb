@@ -115,15 +115,18 @@ Product.create(name:"Essência Premium FM Brasil",organization_id:tabacaria_id,
 	                                             description:"tabaco bem picotado e bastante melaço, com sabor intenso e duradouro",
 	                                             price:"99.99",
 	                                             img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584882/camp-delivery/products/cigarro.png",
-	                                             status:2)
+	                                             status:2,
+												 category_id:Category.limit(1).order(Arel.sql('RANDOM()')).first.id)
 Product.create(name:"Mesa Para Narguile",organization_id:tabacaria_id,
 	                   description:"Mesa Narguile em Madeira",
 	                   price:"99.99",
 	                   img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584976/camp-delivery/products/mesa.png",
-	                   status:2)
+	                   status:2,
+					   category_id:Category.limit(1).order(Arel.sql('RANDOM()')).first.id)
 Product.create(name:"Erva Mate Constança",organization_id:tabacaria_id,
 	                   description:"Erva Mate Especial Pura Folha 1kg",
 	                   price:"99.99",
 	                   img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584895/camp-delivery/products/erva.png",
-	                   status:2)
+	                   status:2,
+					   category_id:Category.limit(1).order(Arel.sql('RANDOM()')).first.id)
 puts "Produtos criados " + Product.count.to_s

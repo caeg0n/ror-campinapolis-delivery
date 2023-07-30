@@ -150,7 +150,7 @@ class OrganizationsController < ApplicationController
     render json: result
   end
 
-   def hot_deals
+  def hot_deals
     tempObj = {}
     result = []
     organizations = Organization.where(open: true)
@@ -164,6 +164,26 @@ class OrganizationsController < ApplicationController
                   "title": organization.name,
                 }
       result.push(tempObj)
+    end
+    render json: result
+  end
+
+  def get_categories_and_products
+    id = params.permit(['id'])["id"].to_i
+    categories = Category.where(id: Product.where(organization_id: id))
+    result = categories.map do |category|
+      {
+        title: category.name,
+        data: Product.where(organization_id: id).map do |product|
+          {
+            id: product.id,
+            title: product.name,
+            description: product.description,
+            price: product.price,
+            image: product.img
+          }
+        end
+      }
     end
     render json: result
   end

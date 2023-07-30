@@ -42,4 +42,5 @@ Rails.application.routes.draw do
 	get 'get_most_popular/:number', to: "organizations#most_popular"
 	get 'get_recommended_places', to: "organizations#recommended_places"
 	get 'get_hot_deals', to: "organizations#hot_deals"
+	get 'get_categories_and_products/:id', to: "organizations#get_categories_and_products"
 end
