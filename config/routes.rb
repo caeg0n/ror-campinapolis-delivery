@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 	resources :notifications
 	resources :deliveries
 	resources :orders, param: :reference
-	resources :addresses
+	#resources :addresses
 	resources :products
 	resources :organizations
 	resources :organization_category_tags
@@ -16,7 +16,8 @@ Rails.application.routes.draw do
 	
 	post 'login', to: "organizations#login"
 	post 'notification/register', to: "notifications#register"
-	post 'notification/update_token', to: "notifications#update_token" 
+	post 'notification/update_token', to: "notifications#update_token"
+	post 'addresses', to: "addresses#create" 
 	
 	put 'update_delivery_state', to: "orders#update_delivery_state"
 	put 'update_deliveryman_state', to: "orders#update_deliveryman_state"
@@ -28,11 +29,12 @@ Rails.application.routes.draw do
 	get 'get_orders_lenght_for_deliveryman',to: "orders#get_orders_lenght_for_deliveryman"
 	get 'get_orders_lenght_for_salesman',to: "orders#get_orders_lenght_for_salesman"
 	get 'get_deliveries_lenght', to: "deliveries#get_deliveries_lenght"
+	get 'get_products_length/:id', to: "products#get_length"
+	get 'get_addresses/:device_id', to: "addresses#index"
 	get 'all_not_excluded_and_paused', to: "products#all_not_excluded_and_paused"
 	get 'organizations/close/:id', to: "organizations#close"
 	get 'organizations/open/:id', to: "organizations#open"
 	get 'organizations/info/:id', to: "organizations#info"
-	get 'get_products_length/:id', to: "products#get_length"
 	get 'organizations_by_category/:name', to: "categories#get_organizations"
 
 	get 'get_all_organizations_with_distinct_category', to: "organizations#get_all_with_distinct_category"

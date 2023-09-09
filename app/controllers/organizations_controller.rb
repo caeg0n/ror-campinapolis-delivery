@@ -180,7 +180,8 @@ class OrganizationsController < ApplicationController
             title: product.name,
             description: product.description,
             price: product.price,
-            image: product.img
+            image: product.img,
+            organization_id: product.organization_id
           }
         end
       }

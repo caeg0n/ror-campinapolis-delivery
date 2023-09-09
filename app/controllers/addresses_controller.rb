@@ -2,34 +2,54 @@ class AddressesController < ApplicationController
   before_action :set_address, only: [:show, :update, :destroy]
 
   def index
-    pa = params.permit(['device_id','get_length'])
+    pa = params.permit(['device_id'])
     id = pa['device_id']
-    gl = pa["get_length"]
     if (id)
       addresses = Address.where(device_id: id)
-    else
-      addresses = Address.all
-    end
-    
-    if not gl.nil?
-      resp = Address.where(device_id:id).count.to_i
-      render json: resp
-    else
-      render json: addresses
-    end
-
+      render json: addresses, status: :ok
+      return
+    end    
+    render json: "erro", status: :unprocessable_entity
   end
+
+  # def index
+  #   pa = params.permit(['device_id','get_length'])
+  #   id = pa['device_id']
+  #   gl = pa["get_length"]
+  #   if (id)
+  #     addresses = Address.where(device_id: id)
+  #   else
+  #     addresses = Address.all
+  #   end
+    
+  #   if not gl.nil?
+  #     resp = Address.where(device_id:id).count.to_i
+  #     render json: resp
+  #   else
+  #     render json: addresses
+  #   end
+  # end
 
   # def show
   #   render json: @address
   # end
 
   def create
-    @address = Address.new(address_params)
-    if @address.save
-      render json: @address, status: :created, location: @address
-    else
-      render json: @address.errors, status: :unprocessable_entity
+    device_id = address_params[:device_id]
+    name = address_params[:name]
+    cel = address_params[:cel]
+    address = address_params[:address_detail]
+    if device_id.present? and name.present? and cel.present? and address.present? 
+      @address = Address.new()
+      @address.device_id = device_id
+      @address.name = name
+      @address.cel = cel
+      @address.address = address
+      if @address.save
+        render json: @address, status: :created, location: @addresses
+      else
+        render json: @address.errors, status: :unprocessable_entity
+      end
     end
   end
 
@@ -51,7 +71,7 @@ class AddressesController < ApplicationController
     end
 
     def address_params
-      params.require(:address).permit(:device_id, :name, :cel, :address)
+      params.require(:address).permit(:device_id, :name, :cel, :address_detail)
     end
     
 end
