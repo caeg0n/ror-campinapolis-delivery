@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   	resources :categories
   	resources :rankings
 
+	delete 'addresses', to: 'addresses#destroy'
+
 	get 'print', to: "print#index"
 	
 	post 'login', to: "organizations#login"

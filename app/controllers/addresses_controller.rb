@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:show, :update, :destroy]
+  before_action :set_address, only: [:show, :update]
 
   def index
     pa = params.permit(['device_id'])
@@ -53,6 +53,19 @@ class AddressesController < ApplicationController
     end
   end
 
+  def destroy
+    device_id = address_params[:device_id]
+    id = address_params[:id]
+    if device_id.present? and id.present?
+      @address = Address.where(device_id:device_id,id:id)
+      if @address.destroy(id)
+        render json: 'ok', status: :no_content
+      else
+        render json: 'error', status: :unprocessable_entity
+      end
+    end
+  end
+
   # def update
   #   if @address.update(address_params)
   #     render json: @address
@@ -61,17 +74,13 @@ class AddressesController < ApplicationController
   #   end
   # end
 
-  # def destroy
-  #   @address.destroy
-  # end
-
   private
     def set_address
       @address = Address.find(params[:id])
     end
 
     def address_params
-      params.require(:address).permit(:device_id, :name, :cel, :address_detail)
+      params.require(:address).permit(:device_id, :name, :cel, :address_detail,:id)
     end
     
 end
