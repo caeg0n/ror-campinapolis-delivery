@@ -59,7 +59,7 @@ class AddressesController < ApplicationController
     if device_id.present? and id.present?
       @address = Address.where(device_id:device_id,id:id)
       if @address.destroy(id)
-        render json: 'ok', status: :no_content
+        render json: nil, status: :no_content
       else
         render json: 'error', status: :unprocessable_entity
       end
