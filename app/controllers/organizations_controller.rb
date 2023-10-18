@@ -169,22 +169,27 @@ class OrganizationsController < ApplicationController
   end
 
   def get_categories_and_products
-    id = params.permit(['id'])["id"].to_i
-    categories = Category.where(id: Product.where(organization_id: id))
-    result = categories.map do |category|
+    categories = Category.all
+    grouped_categories = categories.group_by { |category| category.organization_id }
+    result = grouped_categories.map do |organization_id, categories|
       {
-        title: category.name,
-        data: Product.where(organization_id: id).map do |product|
+        organization_id: organization_id,
+        categories: categories.map do |category|
           {
-            id: product.id,
-            title: product.name,
-            description: product.description,
-            price: product.price,
-            image: product.img,
-            organization_id: product.organization_id
+            title: category.name,
+            products: Product.where(category_id:category.id).map do |product|
+              {
+                id: product.id,
+                title: product.name,
+                description: product.description,
+                price: product.price,
+                image: product.img,
+                organization_id: product.organization_id
+              }
+            end
           }
         end
-      }
+      }  
     end
     render json: result
   end

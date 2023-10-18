@@ -2,16 +2,17 @@ Rails.application.routes.draw do
   	mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 	mount ActionCable.server => '/cable'
 	
+	#resources :addresses
+	#resources :payments
 	resources :notifications
 	resources :deliveries
 	resources :orders, param: :reference
-	#resources :addresses
 	resources :products
 	resources :organizations
 	resources :organization_category_tags
   	resources :categories
   	resources :rankings
-
+  	
 	delete 'addresses', to: 'addresses#destroy'
 
 	get 'print', to: "print#index"
@@ -46,5 +47,6 @@ Rails.application.routes.draw do
 	get 'get_most_popular/:number', to: "organizations#most_popular"
 	get 'get_recommended_places', to: "organizations#recommended_places"
 	get 'get_hot_deals', to: "organizations#hot_deals"
-	get 'get_categories_and_products/:id', to: "organizations#get_categories_and_products"
+	get 'get_categories_and_products', to: "organizations#get_categories_and_products"
+	get 'get_payments_methods', to: "payments#list_all_methods"
 end

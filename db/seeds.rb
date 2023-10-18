@@ -1,5 +1,12 @@
 require 'digest/md5'
 #tabacaria aguiar
+Payment.destroy_all
+Payment.create(name:'Dinheiro na Entrega',icon:'cash',payment_type:1)
+Payment.create(name:'Cartão de Crédito na Entrega',icon:'card',payment_type:2)
+Payment.create(name:'Cartão de Débito na Entrega',icon:'card-outline',payment_type:3)
+Payment.create(name:'Anotar na Minha Conta',icon:'thumbs-down',payment_type:4)
+Payment.create(name:'Pagar com PIX',icon:'swap-horizontal',payment_type:5)
+
 Organization.destroy_all
 Organization.create(organization_status:2,token:nil,organization_type:0,name: 'Tabacaria Aguiar',category_base:'tabacaria',cel: '66981053385',
 	                username:'pc'.upcase,delivery_fee: '2.0',minimal_buy_price:'10.0',password:Digest::MD5.hexdigest('123'.upcase),open:true,
@@ -68,7 +75,6 @@ Organization.create(organization_status:2,token:nil,organization_type:1,name: 'B
 
 Organization.create(organization_status:2,token:nil,organization_type:2,name: 'Carlos Eduardo', cel: '66981102799',
 	                username:'admin'.upcase, password:Digest::MD5.hexdigest('123'.upcase))
-
 puts "Organizações criadas " + Organization.count.to_s
 tabacaria_id = Organization.where(name: 'Tabacaria Aguiar').first.id
 upa_id = Organization.where(name: 'Upa Distribuidora').first.id
@@ -81,6 +87,7 @@ badoy_id = Organization.where(name: 'Casa de Carnes do Badoy').first.id
 olive_id = Organization.where(name: 'Olive Delivery Pizza').first.id
 vianet_id = Organization.where(name: 'Via Net Informática').first.id
 
+Product.destroy_all
 Category.destroy_all
 Category.create(organization_id:tabacaria_id,name:"narguiles",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-lanches-v2.jpg")
 Category.create(organization_id:tabacaria_id,name:"essencias",image_url:"https://static-images.ifood.com.br/image/upload/f_auto,t_low/discoveries/19C1-lanches-v2.jpg")
@@ -110,23 +117,29 @@ OrganizationCategoryTag.create(organization_id:badoy_id,tag: :acougue)
 OrganizationCategoryTag.create(organization_id:vianet_id,tag: :informatica)
 puts "CategoriasTag criadas " + OrganizationCategoryTag.count.to_s
 
-Product.destroy_all
-Product.create(name:"Essência Premium FM Brasil",organization_id:upa_id,
+Product.create(name:"Essência Premium FM Brasil",organization_id:tabacaria_id,
 	                                             description:"tabaco bem picotado e bastante melaço, com sabor intenso e duradouro",
 	                                             price:"1.50",
 	                                             img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584882/camp-delivery/products/cigarro.png",
 	                                             status:2,
-												 category_id:Category.limit(1).order(Arel.sql('RANDOM()')).first.id)
+												 category_id:Category.where(organization_id:tabacaria_id).order("RANDOM()").first.id)
 Product.create(name:"Mesa Para Narguile",organization_id:tabacaria_id,
 	                   description:"Mesa Narguile em Madeira",
 	                   price:"2.70",
 	                   img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584976/camp-delivery/products/mesa.png",
 	                   status:2,
-					   category_id:Category.limit(1).order(Arel.sql('RANDOM()')).first.id)
+					   category_id:Category.where(organization_id:tabacaria_id).order("RANDOM()").first.id)
 Product.create(name:"Erva Mate Constança",organization_id:tabacaria_id,
 	                   description:"Erva Mate Especial Pura Folha 1kg",
 	                   price:"3.80",
 	                   img:"https://res.cloudinary.com/campinapolis-com/image/upload/v1615584895/camp-delivery/products/erva.png",
 	                   status:2,
-					   category_id:Category.limit(1).order(Arel.sql('RANDOM()')).first.id)
+					   category_id:Category.where(organization_id:tabacaria_id).order("RANDOM()").first.id)
+Product.create(name:"Caixa de Skol",organization_id:upa_id,
+	                   description:"Caixa de Skol 12 unidades 160ml",
+	                   price:"27.80",
+	                   img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuYdjXMR9z6tHwVXsWF4zwJCwYHBRZfQwmkjKiqfTtU9afG49i9g_hmKAr4YvAdtOVFNQ&usqp=CAU",
+	                   status:2,
+					   category_id:Category.where(organization_id:upa_id).order("RANDOM()").first.id)
+
 puts "Produtos criados " + Product.count.to_s
