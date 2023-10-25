@@ -1,5 +1,6 @@
 require 'digest/md5'
 #tabacaria aguiar
+Address.destroy_all
 Payment.destroy_all
 Payment.create(name:'Dinheiro na Entrega',icon:'cash',payment_type:1)
 Payment.create(name:'Cartão de Crédito na Entrega',icon:'card',payment_type:2)
