@@ -14,7 +14,7 @@ class Order < ApplicationRecord
     	                  :accepted_to_salesman,
     	                  :accepted_to_camp,      #vendedor disse q a entrega é da camp
     	                  :camp_inprogress,       #entregador pegou, preparando a entrega(esperando o vendedor fazer)
-                          :camp_in_route,         #saiu para a entrega
+                        :camp_in_route,         #saiu para a entrega
     	                  :camp_fail,
     	                  :camp_canceled,
     	                  :camp_finished,
@@ -23,7 +23,13 @@ class Order < ApplicationRecord
     	              	  :salesman_canceled,
     	              	  :salesman_finished], _suffix: true
 
-    enum payment: [ :cc,:cd,:d,:ac ]
+		enum payment: [ :nada,
+										:dinheiro,
+										:cartao_credito,
+										:cartao_debito,
+										:fiado,
+										:pix 
+									]
 
 	default_scope { order id: :DESC }
 

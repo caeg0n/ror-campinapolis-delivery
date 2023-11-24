@@ -62,12 +62,13 @@ class OrdersController < ApplicationController
     order = Order.new(order_params)
     client = order.consumer_name
     if order.save
-      id = order.product_id
-      organization_id = Product.find(id).organization_id
-      organization_name = Organization.find(organization_id).name
-      send_message_to_admins({client:client,organization:organization_name})
-      send_message_to_organization({client:client,organization_id:organization_id})
-      render json: "ok", status: :created, location: order
+      #id = order.product_id
+      #organization_id = Product.find(id).organization_id
+      #organization_name = Organization.find(organization_id).name
+      #send_message_to_admins({client:client,organization:organization_name})
+      #send_message_to_organization({client:client,organization_id:organization_id})
+      #render json: { data: 'created' }, status: :ok
+      render json: order.errors, status: :unprocessable_entity
     else
       render json: order.errors, status: :unprocessable_entity
     end
@@ -171,9 +172,8 @@ private
   end
 
   def order_params
-    params.require(:order).permit(:device_id,:reference,:product_id,:address,
-                                  :payment,:total,:amount,:consumer_name,:salesman_state,
-                                  :organization_id,:order_id,:delivery_state,:data)
+    params.require(:order).permit(:device_id,:product_id,:address,
+                                  :payment,:total, :amount,:consumer_name,:reference)
   end
 
   def device_id

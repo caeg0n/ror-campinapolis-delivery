@@ -8,8 +8,9 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.integer :payment
       t.decimal :total
       t.integer :amount
-
       t.timestamps
     end
+    change_column :orders, :address, 'integer USING CAST(address AS integer)'
   end
+
 end

@@ -37,11 +37,13 @@ class AddressesController < ApplicationController
   def create
     device_id = address_params[:device_id]
     name = address_params[:name]
+    title = address_params[:title]
     cel = address_params[:cel]
     address = address_params[:address_detail]
-    if device_id.present? and name.present? and cel.present? and address.present? 
+    if device_id.present? and title.present? and name.present? and cel.present? and address.present? 
       @address = Address.new()
       @address.device_id = device_id
+      @address.title = title
       @address.name = name
       @address.cel = cel
       @address.address = address
@@ -80,7 +82,7 @@ class AddressesController < ApplicationController
     end
 
     def address_params
-      params.require(:address).permit(:device_id, :name, :cel, :address_detail,:id)
+      params.require(:address).permit(:device_id, :name,:title , :cel, :address_detail,:id)
     end
     
 end
