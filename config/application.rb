@@ -27,6 +27,11 @@ module UpaApi
     config.middleware.use ActionDispatch::Session::CookieStore, {:key=>"_upa_api_session"}
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    
+    I18n.config.enforce_available_locales = true 
+    config.i18n.available_locales = ["pt-BR"] 
+    config.i18n.default_locale = "pt-BR" 
+    config.time_zone = "Brasilia" 
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do

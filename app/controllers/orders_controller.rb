@@ -5,30 +5,78 @@ class OrdersController < ApplicationController
     device_id = index_orders_params[:device_id]
     organization_id = index_orders_params[:organization_id]
     if !organization_id
-      orders = Order.where(device_id: device_id).group_by(&:reference)
+      grouped_orders = Order.where(device_id: device_id).group_by(&:reference)
+      enriched_grouped_orders = grouped_orders.transform_values do |orders|
+        enriched_orders = orders.map do |order|
+          product = Product.find_by(id: order.product_id)
+          organization = Organization.find_by(id: product&.organization_id)
+          order_attributes = order.attributes
+          order_attributes["organization_id"] = product&.organization_id
+          order_attributes["organization_name"] = organization&.name
+          order_attributes["organization_logo"] = organization&.logo
+          order_attributes["organization_category"] = organization&.category_base
+          order_attributes["data"] = I18n.l(Time.current, format: :long)
+          order_attributes
+        end
+        enriched_orders.group_by { |order| order["organization_id"] }
+      end  
+      render json: enriched_grouped_orders
     else
-    #   id = organization_id['organization_id']
-    #   if (Organization.find(id).organization_type == 'salesman')
-    #     orders = Order.joins(:product).where("products.organization_id = ?", id).group_by(&:reference)
-    #   end
-    #   aux = []
-    #   result = []
-    #   if (Organization.find(id).organization_type == 'deliveryman')
-    #     orders = Order.select("products.*,orders.*").joins(:product)
-    #                                                 .where(delivery_state: :accepted_to_camp)
-    #                                                 .group_by(&:reference)
-    #     orders.each do |key,value|
-    #       b = value.group_by{ |a| a["organization_id"] }
-    #       b.each_value do |v|
-    #         result << v
-    #       end
-    #     end
-    #     orders = result
-    #   end
     end
-    render json: orders
-    #render json: {}
   end
+
+  def get_order_status_list
+    render json: Order.order_status_lists
+  end
+
+  def get_order_status_base_list
+    render json: { order_status_base_list: Order.order_status_base_lists.keys }
+  end
+
+  def get_order_status_block_list
+    render json: { order_status_block_list: Order.order_status_block_lists.keys }
+  end
+  
+  # def index
+  #   device_id = index_orders_params[:device_id]
+  #   organization_id = index_orders_params[:organization_id]
+  #   if !organization_id
+  #     grouped_orders = Order.where(device_id: device_id).group_by(&:reference)
+  #     enriched_orders = grouped_orders.transform_values do |orders|
+  #       orders.map do |order|
+  #         product = Product.find_by(id: order.product_id)
+  #         order_attributes = order.attributes
+  #         order_attributes["organization_id"] = product.organization_id if product
+  #         order_attributes
+  #       end
+  #     end
+  #     # orders = Order.where(device_id: device_id).group_by(&:reference)
+  #     # product = Product.find_by(id: index_orders_params[:product_id])
+  #     # order["organization_id"] = product.organization_id if product
+  #   else
+  #   #   id = organization_id['organization_id']
+  #   #   if (Organization.find(id).organization_type == 'salesman')
+  #   #     orders = Order.joins(:product).where("products.organization_id = ?", id).group_by(&:reference)
+  #   #   end
+  #   #   aux = []
+  #   #   result = []
+  #   #   if (Organization.find(id).organization_type == 'deliveryman')
+  #   #     orders = Order.select("products.*,orders.*").joins(:product)
+  #   #                                                 .where(delivery_state: :accepted_to_camp)
+  #   #                                                 .group_by(&:reference)
+  #   #     orders.each do |key,value|
+  #   #       b = value.group_by{ |a| a["organization_id"] }
+  #   #       b.each_value do |v|
+  #   #         result << v
+  #   #       end
+  #   #     end
+  #   #     orders = result
+  #   #   end
+  #   end
+  #   render json: enriched_orders
+  #   # render json: orders
+  #   #render json: {}
+  # end
 
   # def get_orders_lenght
   #   pa = params.permit(['device_id'])

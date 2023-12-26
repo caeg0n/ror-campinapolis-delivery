@@ -41,9 +41,11 @@ Rails.application.routes.draw do
 	get 'organizations/open/:id', to: "organizations#open"
 	get 'organizations/info/:id', to: "organizations#info"
 	get 'organizations_by_category/:name', to: "categories#get_organizations"
+	get 'order_status_list', to: "orders#get_order_status_list"
+	get 'order_status_base_list', to: "orders#get_order_status_base_list"
+	get 'order_status_block_list', to: "orders#get_order_status_block_list"
 	#get 'get_products_length/:id', to: "products#get_length"
 	
-
 	get 'get_all_organizations_with_distinct_category', to: "organizations#get_all_with_distinct_category"
 	get 'get_all_categories', to: "categories#index"
 	get 'get_all_opened_organizations', to: "organizations#opened_organizations"
