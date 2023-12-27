@@ -1,16 +1,22 @@
-  #url: "postgres://nrhkjeblytbodi:ba6c72f782f49c592f8cc2cabda80f51452c77f9b50584a5737f73645498c5f5@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d9mnlk1vutrre1"
+#url: "postgres://nrhkjeblytbodi:ba6c72f782f49c592f8cc2cabda80f51452c77f9b50584a5737f73645498c5f5@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d9mnlk1vutrre1"
 
 development:
   adapter: postgresql
-  database: camp_api_pg
+  database: ror-campinapolis-compras
   pool: 5
   timeout: 5000
 
-test:
+production:
   adapter: postgresql
-  database: camp_api_pg
+  database: ror-campinapolis-compras
   pool: 5
-  timeout: 5000
+  timeout: 8000
+
+# test:
+#   adapter: postgresql
+#   database: camp
+#   pool: 5
+#   timeout: 5000
 
 # production:
 #   adapter: postgresql
@@ -18,12 +24,12 @@ test:
 #   pool: 5
 #   timeout: 5000
 
-production:
-  adapter: postgresql
-  database: camp_api_pg
-  host: 200.39.135.90
-  username: postgres
-  password: omega200
-  port: 5432
-  pool: 5
-  timeout: 5000
+# production:
+#   adapter: postgresql
+#   database: camp_api_pg
+#   host: 200.39.135.90
+#   username: postgres
+#   password: omega200
+#   port: 5432
+#   pool: 5
+#   timeout: 5000
