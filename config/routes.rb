@@ -6,17 +6,15 @@ Rails.application.routes.draw do
 	#resources :payments
 	#resources :orders, param: :reference
 	#resources :notifications
+  #resources :rankings
 	resources :deliveries
 	resources :products
 	resources :organizations
 	resources :organization_category_tags
   resources :categories
-  resources :rankings
   	
 	delete 'addresses', to: 'addresses#destroy'
 
-	get 'print', to: "print#index"
-	
 	post 'orders', to: "orders#create"
 	post 'login', to: "organizations#login"
 	post 'notification/register', to: "notifications#register"
@@ -29,6 +27,8 @@ Rails.application.routes.draw do
 	put 'pause_product', to: "products#pause_product"
 	put 'destroy_product', to: "products#destroy_product"
 
+	#get 'print', to: "print#index"
+	#get 'get_products_length/:id', to: "products#get_length"
 	get 'get_orders/organization/:organization_id', to: "orders#index"
 	get 'get_orders/device/:device_id', to: "orders#index", defaults: { format: :json }
 	get 'get_orders_lenght', to: "orders#get_orders_lenght"
@@ -44,7 +44,6 @@ Rails.application.routes.draw do
 	get 'order_status_list', to: "orders#get_order_status_list"
 	get 'order_status_base_list', to: "orders#get_order_status_base_list"
 	get 'order_status_block_list', to: "orders#get_order_status_block_list"
-	#get 'get_products_length/:id', to: "products#get_length"
 	
 	get 'get_all_organizations_with_distinct_category', to: "organizations#get_all_with_distinct_category"
 	get 'get_all_categories', to: "categories#index"
