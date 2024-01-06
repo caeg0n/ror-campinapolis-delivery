@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 	#resources :orders, param: :reference
 	#resources :notifications
   #resources :rankings
+	#resources :products
 	resources :deliveries
-	resources :products
 	resources :organizations
 	resources :organization_category_tags
   resources :categories
@@ -19,8 +19,11 @@ Rails.application.routes.draw do
 	post 'login', to: "organizations#login"
 	post 'notification/register', to: "notifications#register"
 	post 'notification/update_token', to: "notifications#update_token"
-	post 'addresses', to: "addresses#create" 
-	
+	post 'addresses', to: "addresses#create"
+	post 'products', to: "products#create"
+  #post 'organization_devices', to: 'organization_devices#create', defaults: { format: :json }
+
+
 	put 'update_delivery_state', to: "orders#update_delivery_state"
 	put 'update_deliveryman_state', to: "orders#update_deliveryman_state"
 	put 'update_sale_state', to: "orders#update_sale_state"
@@ -54,4 +57,5 @@ Rails.application.routes.draw do
 	get 'get_hot_deals', to: "organizations#hot_deals"
 	get 'get_categories_and_products', to: "organizations#get_categories_and_products"
 	get 'get_payments_methods', to: "payments#list_all_methods"
+	get 'organization_devices', to: "organization_devices#find", defaults: { format: :json }
 end

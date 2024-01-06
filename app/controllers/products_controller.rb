@@ -1,11 +1,10 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :update, :destroy]
 
-  def index
-    products = Product.all
-    render json: products
-  end
-
+  # def index
+  #   products = Product.all
+  #   render json: products
+  # end
 
   def all_not_excluded_and_paused
     products1 = Product.where(status:'active')
@@ -22,6 +21,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    binding.pry
     @product = Product.new(product_params)
     if @product.save
       render json: @product, status: :created, location: @product
@@ -30,59 +30,58 @@ class ProductsController < ApplicationController
     end
   end
 
-  def update
-    if @product.update(product_params.except(:id,:img))
-      render json: @product
-    else
-      render json: @product.errors, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   if @product.update(product_params.except(:id,:img))
+  #     render json: @product
+  #   else
+  #     render json: @product.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  def pause_product
-    pa = params['product'].permit(['id','status'])
-    id = pa['id']
-    status = pa['status']
-    status = 'paused' if status == "1"
-    status = 'active' if status == "2"
-    product = Product.find(id)
-    if product.status == 'active'
-      product.status = 'paused'
-    else
-      if product.status == 'paused'
-        product.status = 'active'
-      end 
-    end
-    product.status = status if product.status.nil?
-    if product.save
-      render json: product
-    else
-      render json: product.errors, status: :unprocessable_entity
-    end
-  end
+  # def pause_product
+  #   pa = params['product'].permit(['id','status'])
+  #   id = pa['id']
+  #   status = pa['status']
+  #   status = 'paused' if status == "1"
+  #   status = 'active' if status == "2"
+  #   product = Product.find(id)
+  #   if product.status == 'active'
+  #     product.status = 'paused'
+  #   else
+  #     if product.status == 'paused'
+  #       product.status = 'active'
+  #     end 
+  #   end
+  #   product.status = status if product.status.nil?
+  #   if product.save
+  #     render json: product
+  #   else
+  #     render json: product.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-
-  def destroy_product
-    pa = params['product'].permit(['id','status'])
-    id = pa['id']
-    status = pa['status']
-    status = 'paused' if status == "1"
-    status = 'active' if status == "2"
-    status = 'excluded' if status == "0"
-    product = Product.find(id)
-    if product.status == 'active'
-      product.status = 'excluded'
-    else
-      if product.status == 'paused'
-        product.status = 'excluded'
-      end 
-    end
-    product.status = status if product.status.nil?
-    if product.save
-      render json: product
-    else
-      render json: product.errors, status: :unprocessable_entity
-    end
-  end
+  # def destroy_product
+  #   pa = params['product'].permit(['id','status'])
+  #   id = pa['id']
+  #   status = pa['status']
+  #   status = 'paused' if status == "1"
+  #   status = 'active' if status == "2"
+  #   status = 'excluded' if status == "0"
+  #   product = Product.find(id)
+  #   if product.status == 'active'
+  #     product.status = 'excluded'
+  #   else
+  #     if product.status == 'paused'
+  #       product.status = 'excluded'
+  #     end 
+  #   end
+  #   product.status = status if product.status.nil?
+  #   if product.save
+  #     render json: product
+  #   else
+  #     render json: product.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # def destroy
   #   @product.destroy
