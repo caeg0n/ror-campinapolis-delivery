@@ -23,12 +23,13 @@ Rails.application.routes.draw do
 	post 'products', to: "products#create"
   #post 'organization_devices', to: 'organization_devices#create', defaults: { format: :json }
 
-
 	put 'update_delivery_state', to: "orders#update_delivery_state"
 	put 'update_deliveryman_state', to: "orders#update_deliveryman_state"
 	put 'update_sale_state', to: "orders#update_sale_state"
 	put 'pause_product', to: "products#pause_product"
 	put 'destroy_product', to: "products#destroy_product"
+	put 'organization_state', to: "organizations#update_state"
+	put 'organization_delivery_type', to: "organizations#update_organization_delivery_type", defaults: { format: :json }
 
 	#get 'print', to: "print#index"
 	#get 'get_products_length/:id', to: "products#get_length"

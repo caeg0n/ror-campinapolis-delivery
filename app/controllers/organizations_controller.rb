@@ -32,25 +32,41 @@ class OrganizationsController < ApplicationController
     render json: @organizations
   end
 
-  def open
-    id = params[:id]
-    organization = Organization.find(id)
-    if (!organization.nil?)
-      organization.open = true
-      organization.save
-    end
-    render json: "ok"
+  def update_state
+    binding.pry
   end
 
-  def close
-    id = params[:id]
-    organization = Organization.find(id)
-    if (!organization.nil?)
-      organization.open = false
-      organization.save
-    end
-    render json: "ok"
+  def update_organization_delivery_type
+    params = delivery_type_params
+    uuid = params["uuid"]
+    delivery_type = params["delivery_type"]
+    state = params["state"]
+    organization_device = OrganizationDevice.where(device_id:uuid)
+    organization = Organization.find(organization_device.first.organization_id) if organization_device.count > 0
+    organization.delivery_type = :my_org if delivery_type == "my_org" and state == true and organization_device.count > 0
+    organization.delivery_type = :camp_entregas if delivery_type == "camp_entregas" and state == true if organization_device.count > 0
+    organization.save if organization_device.count > 0
   end
+
+  # def open
+  #   id = params[:id]
+  #   organization = Organization.find(id)
+  #   if (!organization.nil?)
+  #     organization.open = true
+  #     organization.save
+  #   end
+  #   render json: "ok"
+  # end
+
+  # def close
+  #   id = params[:id]
+  #   organization = Organization.find(id)
+  #   if (!organization.nil?)
+  #     organization.open = false
+  #     organization.save
+  #   end
+  #   render json: "ok"
+  # end
 
   def info
     id = params[:id]
@@ -207,6 +223,15 @@ class OrganizationsController < ApplicationController
   # end
 
   private
+    
+    def delivery_type_params
+      params.require(:organization).permit(:uuid, :delivery_type, :state)
+    end
+
+    def status_params
+      params.require(:organization).permit(:organization, :state)
+    end
+
     def set_organization
       @organization = Organization.find(params[:id])
     end

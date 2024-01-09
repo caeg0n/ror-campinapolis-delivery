@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_03_174402) do
+ActiveRecord::Schema.define(version: 2024_01_08_000537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2024_01_03_174402) do
     t.decimal "minimal_buy_price"
     t.string "category_base"
     t.integer "organization_status"
+    t.integer "delivery_type"
   end
 
   create_table "payments", force: :cascade do |t|

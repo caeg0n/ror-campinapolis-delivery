@@ -2,8 +2,9 @@ class Organization < ApplicationRecord
 	
 	has_many :products
 	
-	enum organization_type: [ :salesman,:deliveryman,:admin ], _suffix: true
-	enum organization_status: [ :enabled,:disabled,:waiting ], _suffix: true
+	enum organization_type: [:salesman,:deliveryman,:admin], _suffix: true
+	enum organization_status: [:enabled,:disabled,:waiting], _suffix: true
+	enum delivery_type: [:my_org, :camp_entregas]
 
 	validates :organization_status,presence:true  
 	validates :username, uniqueness: true

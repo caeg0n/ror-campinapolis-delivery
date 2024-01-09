@@ -5,7 +5,8 @@ class OrganizationDevicesController < ApplicationController
       device_id = find_organization_device_params["device_id"]
       device = OrganizationDevice.enabled.where(device_id:device_id)
       organization = Organization.find(device[0].organization_id) if device.count > 0
-      filtered_organization = organization.attributes.slice("name","cover","logo") if device.count > 0
+      filtered_organization = organization.attributes.slice("name","cover","logo", "delivery_type") if device.count > 0
+      filtered_organization["delivery_type"] = :my_org if filtered_organization["delivery_type"].nil? if device.count > 0
       return render json: {device:device[0].id, status:1, organization:filtered_organization}, status: :ok if device.count > 0 
       device = OrganizationDevice.disabled.where(device_id:device_id)
       return render json: {device:device[0].id, status:2}, status: :ok if device.count > 0 
